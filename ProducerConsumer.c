@@ -6,14 +6,22 @@ int full  = 0;
 int empty = 10;
 int x     = 0;
 
+void wait(int *s) {
+    --(*s);
+}
+
+void signal(int *s) {
+    ++(*s);
+}
+
 void prod() {
     if(mutex == 1 && empty != 0) {
-        --mutex;
+        wait(&mutex);
         ++full;
         --empty;
         x++;
         printf("Producer produced %d\n", x);
-        ++mutex;
+        signal(&mutex);
     } else {
         printf("Buffer is full\n");
     }
@@ -21,12 +29,12 @@ void prod() {
 
 void cons() {
     if(mutex == 1 && full != 0) {
-        ++mutex;
+        wait(&mutex);
         --full;
         ++empty;
         x--;
-        printf("Consumer comsumed %d\n", x);
-        --mutex;
+        printf("Consumer consumed %d\n", x);
+        signal(&mutex);
     } else {
         printf("Buffer is empty\n");
     }
@@ -46,18 +54,10 @@ int main() {
         scanf("%d", &choice);
 
         switch(choice) {
-            case (1):
-                prod();
-                break;
-            case (2):
-                cons();
-                break;
-            case (3):
-                running = 0;
-                break;  
-            default:
-                printf("Enter a valid choice:\n");
-                break;
+            case (1): prod(); break;
+            case (2): cons(); break;
+            case (3): running = 0; break;  
+            default: printf("Enter a valid choice:\n");
         }
     }
 
