@@ -13,12 +13,12 @@ Find TAT, WT, Avg TAT, Avg WT<br/>
 
 ### Disk Scheduling
 Find Total Track Movements<br/>
-❌ SCAN <br/>
-❌ SSTF<br/>
-❌ FCFS<br/>
-❌ CSCAN<br/>
-❌ LOOK<br/>
-❌ C-LOOK<br/>
+✅ SCAN <br/>
+✅ SSTF<br/>
+✅ FCFS<br/>
+✅ CSCAN<br/>
+✅ LOOK<br/>
+✅ C-LOOK<br/>
 
 ### Memory Allocation
 Find sizes of holes created:<br/>
